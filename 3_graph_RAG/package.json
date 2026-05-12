@@ -4,7 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev":"tsx src/extract.ts"
+    "dev":"tsx src/extract.ts",
+      "query": "tsx src/query.ts"
+
   },
   "keywords": [],
   "author": "",

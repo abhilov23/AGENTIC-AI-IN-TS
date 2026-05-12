@@ -1,3 +1,4 @@
+import { closeDriver, createSession } from "./graph.js";
 import { model } from "./model.js";
 import { extractionSchema } from "./schema.js";
 async function main() {
@@ -29,14 +30,30 @@ ${text}
     const content = typeof response.content === "string" ? response.content : JSON.stringify(response.content);
     console.log("\nRaw Output:\n");
     console.log(content);
-    // then we try to parse the data 
+    const parse = JSON.parse(content);
+    const validated = extractionSchema.parse(parse);
+    console.log(validated);
+    const session = createSession();
     try {
-        const parse = JSON.parse(content);
-        const validated = extractionSchema.parse(parse);
-        console.log(validated);
+        for (const rel of validated) {
+            await session.run(`
+        MERGE (a:Entity {name: $source})
+        MERGE (b:Entity {name: $target})
+        MERGE (a)-[:RELATIONSHIP {type: $relationship}]->(b)
+        `, {
+                source: rel.source,
+                target: rel.target,
+                relationship: rel.relationship,
+            });
+        }
+        console.log("Data stored successfully");
     }
     catch (error) {
         console.log("Parsing validation error:", error);
+    }
+    finally {
+        await session.close();
+        await closeDriver();
     }
 }
 main();
