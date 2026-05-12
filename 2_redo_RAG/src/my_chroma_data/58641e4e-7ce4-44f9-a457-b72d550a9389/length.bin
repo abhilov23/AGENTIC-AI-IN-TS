@@ -1,0 +1,4 @@
+- `npx ts-node xyz.ts` : you can directly execute typescript files using         ts-node.
+- `npx ts-node`  : here you can directly access the typescript running env using this command.
+
+- `tsc.cmd abc.ts -watch` : to use the watch mode, it **will watch a specific file  for any changes**. If any changes are made, it will automatically recompile. It will also inform about the syntax mistakes by i
