@@ -2,7 +2,7 @@
   "name": "agentic_with_hono",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsc && node dist/index.js",
     "build": "tsc",
     "start": "node dist/index.js"
   },
