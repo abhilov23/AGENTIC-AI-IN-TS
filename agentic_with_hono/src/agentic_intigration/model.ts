@@ -33,7 +33,7 @@ export default async function callOpenAIWithHono(c: Context) {
                     stream: true,
                     messages:[
                        { 
-                        role: "system",
+                        role: "user",
                         content: question,
                         },
                     ],
