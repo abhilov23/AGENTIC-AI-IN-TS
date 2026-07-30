@@ -1,0 +1,23 @@
+{
+  "name": "ReAct_agent",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.0.12",
+    "@openai/agents": "^0.14.0",
+    "dotenv": "^17.4.2",
+    "hono": "^4.12.32",
+    "openai": "^6.49.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "tsx": "^4.23.0",
+    "turbo": "^2.10.7",
+    "typescript": "^7.0.2"
+  }
+}
