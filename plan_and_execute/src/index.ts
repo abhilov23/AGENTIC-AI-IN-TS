@@ -1,11 +1,17 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import {planAndExecute} from './agents'
+import {logger} from "hono/logger";
+
+
+
 
 const app = new Hono()
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+
+app.use(logger());
+
+app.post('/', planAndExecute)
 
 serve({
   fetch: app.fetch,
